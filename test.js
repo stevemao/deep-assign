@@ -94,6 +94,13 @@ test('support functions', t => {
 	t.is(target.oracle.bar, false);
 });
 
+test('target can be primatives', t => {
+	var target = fn('abcdefg', {foo: 'bar'});
+	var strObj = Object('abcdefg');
+	strObj.foo = 'bar';
+	t.deepEqual(target, strObj);
+});
+
 test('support multiple sources', t => {
 	t.deepEqual(fn({foo: 0}, {bar: 1}, {bar: 2}), {foo: 0, bar: 2});
 	t.deepEqual(fn({}, {}, {foo: 1}), {foo: 1});
